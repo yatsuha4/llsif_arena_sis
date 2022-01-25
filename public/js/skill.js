@@ -12,4 +12,8 @@ class Skill {
     toString() {
         return `${this.rarity}${this.name}-${this.cond}-${this.rank}`;
     }
+
+    getClass() {
+        return this.min ? `${this.cond}_Plus` : this.cond;
+    }
 }

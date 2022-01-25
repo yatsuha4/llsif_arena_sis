@@ -24,7 +24,7 @@ function createSkillsTable() {
  *
  */
 function createSkill(skill) {
-    const tr = document.createElement("tr");
+    const tr = createElement("tr", "", { class: skill.getClass() });
     tr.appendChild(createTableData(skill.rarity));
     tr.appendChild(createTableData(skill.name));
     tr.appendChild(createTableData(Conditions[skill.cond]));

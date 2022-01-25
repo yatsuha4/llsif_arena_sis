@@ -24,3 +24,21 @@ th, td {
 }
 #skills-header {
 }
+.Absolute {
+    background-color: #fed;
+}
+.Life50, .Life100, .Heart8 {
+    background-color: #efe;
+}
+.FullCombo, .Perfect50 {
+    background-color: #fef;
+}
+.Muse, .Aqours {
+    background-color: #ffe;
+}
+.Smile, .Pure, .Cool {
+    background-color: #fdd;
+}
+.Heart8_Plus {
+    background-color: #dff;
+}
