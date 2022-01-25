@@ -1,0 +1,20 @@
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: solid 1px #ccc;
+    padding: 0.2em 0.5em;
+}
+.table-header {
+    background-color: #eee;
+}
+#skills {
+    height: 50%;
+    overflow: scroll;
+}
+#skills-table {
+}
+#skills-header {
+    position: sticky;
+    top: 0;
+}
