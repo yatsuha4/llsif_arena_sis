@@ -27,7 +27,7 @@ function createSkill(skill) {
     const tr = document.createElement("tr");
     tr.appendChild(createTableData(skill.rarity));
     tr.appendChild(createTableData(skill.name));
-    tr.appendChild(createTableData(skill.cond));
+    tr.appendChild(createTableData(Conditions[skill.cond]));
     tr.appendChild(createTableData(skill.cost));
     tr.appendChild(createTableData(skill.rank));
     tr.appendChild(createTableData(skill.min ? `${skill.max}%+${skill.min}%` : `${skill.max}%`));
