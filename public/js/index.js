@@ -39,7 +39,7 @@ function createSkillsTable() {
  *
  */
 function createSkill(skill) {
-    const tr = createElement("tr", "", { class: skill.getClass() });
+    const tr = createElement("tr", "", { class: getSkillClass(skill) });
     tr.appendChild(createTableData(skill.rarity));
     tr.appendChild(createTableData(skill.name));
     tr.appendChild(createTableData(Conditions[skill.cond]));
@@ -49,11 +49,22 @@ function createSkill(skill) {
     const td = document.createElement("td");
     const input = createInputNumber(localStorage.getItem(skill.toString()) || 0);
     input.addEventListener("change", (event) => {
-        localStorage.setItem(skill.toString(), event.target.value);
+        const value = parseInt(event.target.value);
+        localStorage.setItem(skill.toString(), value);
+        tr.setAttribute("class", getSkillClass(skill));
     });
     td.appendChild(input);
     tr.appendChild(td);
     return tr;
+}
+
+/**
+ */
+function getSkillClass(skill) {
+    const value = localStorage.getItem(skill.toString()) || 0;
+    return (value > 0)
+        ? skill.getClass()
+        : [ skill.getClass(), "empty" ].join(" ");
 }
 
 /**
