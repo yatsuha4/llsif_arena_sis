@@ -15,13 +15,15 @@ CSV.foreach(ARGV[0]) { |row|
     }
     ( 1 .. 5 ).each { |rank|
       if max = skill["R#{rank}"]
+        min = skill["R#{rank}+"]
         args = [
           skill['rarity'], 
           skill['name'], 
-          skill['cond'] || "", 
+          skill['condition'] || "", 
           skill['cost'].to_i, 
           rank, 
-          max.to_f
+          max.to_f, 
+          min ? min.to_f : 0
         ].map { |arg|
           arg.is_a?(String) ? %("#{arg}") : arg.to_s
         }        
