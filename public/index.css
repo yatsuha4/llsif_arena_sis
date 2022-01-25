@@ -1,3 +1,9 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
 table {
     border-collapse: collapse;
 }
@@ -7,14 +13,14 @@ th, td {
 }
 .table-header {
     background-color: #eee;
+    position: sticky;
+    top: 0;
 }
 #skills {
     height: 50%;
-    overflow: scroll;
+    overflow: hidden scroll;
 }
 #skills-table {
 }
 #skills-header {
-    position: sticky;
-    top: 0;
 }
