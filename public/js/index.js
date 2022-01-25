@@ -12,6 +12,7 @@ function createSkillsTable() {
     tr.appendChild(createElement("th", "コスト"));
     tr.appendChild(createElement("th", "ランク"));
     tr.appendChild(createElement("th", "効果"));
+    tr.appendChild(createElement("th", "+"));
     tr.appendChild(createElement("th", "所持数"));
     table.appendChild(tr);
     for(let skill of Skills) {
@@ -30,9 +31,14 @@ function createSkill(skill) {
     tr.appendChild(createTableData(skill.cond));
     tr.appendChild(createTableData(skill.cost));
     tr.appendChild(createTableData(skill.rank));
+    tr.appendChild(createTableData(skill.max));
     tr.appendChild(createTableData(skill.min));
     const td = document.createElement("td");
-    td.appendChild(createInputNumber());
+    const input = createInputNumber(localStorage.getItem(skill.toString()) || 0);
+    input.addEventListener("change", (event) => {
+        localStorage.setItem(skill.toString(), event.target.value);
+    });
+    td.appendChild(input);
     tr.appendChild(td);
     return tr;
 }

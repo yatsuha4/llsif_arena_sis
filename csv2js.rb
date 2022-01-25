@@ -14,16 +14,18 @@ CSV.foreach(ARGV[0]) { |row|
       end
     }
     ( 1 .. 5 ).each { |rank|
-      if min = skill["R#{rank}"]
-        json = {
-          :rarity => skill['rarity'], 
-          :name => skill['name'], 
-          :cond => skill['cond'], 
-          :cost => skill['cost'].to_i, 
-          :rank => rank, 
-          :min => min.to_f
-        }
-        skills << "new Skill(#{JSON.dump(json)})"
+      if max = skill["R#{rank}"]
+        args = [
+          skill['rarity'], 
+          skill['name'], 
+          skill['cond'] || "", 
+          skill['cost'].to_i, 
+          rank, 
+          max.to_f
+        ].map { |arg|
+          arg.is_a?(String) ? %("#{arg}") : arg.to_s
+        }        
+        skills << "new Skill(#{args.join(',')})"
       end
     }
   end
