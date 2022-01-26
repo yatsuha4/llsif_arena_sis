@@ -1,4 +1,11 @@
-window.onload = createSkillsTable;
+window.onload = setup;
+
+/**
+ */
+function setup() {
+    createSkillsTable();
+    setupUnits();
+}
 
 /**
  */
@@ -26,6 +33,13 @@ function createSkillsTable() {
         table.appendChild(createSkill(skill));
     }
     skills.appendChild(table);
+}
+
+/**
+ */
+function setupUnits() {
+    const unit = new Unit();
+    document.getElementById("units").replaceChildren(unit.toHtml());
 }
 
 /**
