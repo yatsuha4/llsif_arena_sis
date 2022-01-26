@@ -86,7 +86,7 @@ class Character {
             if(item.skill.cost > 1) {
                 td.setAttribute("colSpan", item.skill.cost);
             }
-            td.append(document.createTextNode(item.skill.toIndex()));
+            td.append(document.createTextNode(item.skill.toString()));
             elements.push(td);
             cost += item.skill.cost;
         }

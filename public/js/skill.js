@@ -13,6 +13,12 @@ class Skill {
         return `${this.rarity}${this.name}-${this.cond}-${this.rank}`;
     }
 
+    /**
+     */
+    toString() {
+        return `${this.rarity}${this.name}${this.rank}`;
+    }
+
     getClass() {
         return this.min ? `${this.cond}_Plus` : this.cond;
     }
