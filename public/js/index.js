@@ -4,14 +4,7 @@ window.onload = createSkillsTable;
  */
 function equipSkill() {
     const unit = new Unit();
-    const skillMaps = new Map();
-    for(let skill of Skills) {
-        skillMaps.set(skill.toString(), {
-            skill: skill, 
-            count: localStorage.getItem(skill.toString()) || 0
-        });
-    }
-    unit.equipSkill(skillMaps);
+    unit.equipSkill();
     console.log(`value = ${unit.value}`);
 }
 
