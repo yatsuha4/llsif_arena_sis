@@ -20,7 +20,7 @@ class Unit {
         let items = Skills.
               map((skill) => {
                   const value = this.getSkillValue(skill);
-                  const count = localStorage.getItem(skill.toString()) || 0;
+                  const count = localStorage.getItem(skill.toIndex()) || 0;
                   return new SkillItem(skill, value, count);
               }).
               filter((item) => item.count > 0 && item.value > 1);

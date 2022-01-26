@@ -9,7 +9,7 @@ class Skill {
         this.min = min;
     }
 
-    toString() {
+    toIndex() {
         return `${this.rarity}${this.name}-${this.cond}-${this.rank}`;
     }
 

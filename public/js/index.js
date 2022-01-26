@@ -54,10 +54,10 @@ function createSkill(skill) {
     tr.appendChild(createTableData(skill.rank));
     tr.appendChild(createTableData(skill.min ? `${skill.max}%+${skill.min}%` : `${skill.max}%`));
     const td = document.createElement("td");
-    const input = createInputNumber(localStorage.getItem(skill.toString()) || 0);
+    const input = createInputNumber(localStorage.getItem(skill.toIndex()) || 0);
     input.addEventListener("change", (event) => {
         const value = parseInt(event.target.value);
-        localStorage.setItem(skill.toString(), value);
+        localStorage.setItem(skill.toIndex(), value);
         tr.setAttribute("class", getSkillClass(skill));
     });
     td.appendChild(input);
@@ -68,7 +68,7 @@ function createSkill(skill) {
 /**
  */
 function getSkillClass(skill) {
-    const value = localStorage.getItem(skill.toString()) || 0;
+    const value = localStorage.getItem(skill.toIndex()) || 0;
     return (value > 0)
         ? skill.getClass()
         : [ skill.getClass(), "empty" ].join(" ");
