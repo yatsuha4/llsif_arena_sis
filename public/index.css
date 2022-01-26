@@ -1,15 +1,16 @@
 html {
-    height: 100%;
 }
 body {
-    height: 100%;
+    padding: 0.5em;
 }
 table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     width: 100%;
 }
 th, td {
-    border: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
     padding: 0.2em 0.5em;
 }
 label {
@@ -17,18 +18,18 @@ label {
     margin: 0.2em;
     border-radius: 0.2em;
 }
-.table-header {
+thead {
     background-color: #eee;
     position: sticky;
     top: 0;
 }
 #skills {
-    height: 50%;
+    border: solid 2px #eee;
+    height: 50vh;
     overflow: hidden scroll;
 }
-#skills-table {
-}
-#skills-header {
+#units table {
+    border: solid 1px #ccc;
 }
 .unitSkills {
     width: 100%;

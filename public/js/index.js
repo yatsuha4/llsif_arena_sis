@@ -20,18 +20,23 @@ function equipSkill() {
 function createSkillsTable() {
     const skills = document.getElementById("skills");
     const table = createElement("table", "", { id: "skills-table" });
-    const tr = createElement("tr", "", { class: "table-header" });
-    tr.appendChild(createElement("th", "レアリティ"));
-    tr.appendChild(createElement("th", "スキル"));
-    tr.appendChild(createElement("th", "条件"));
-    tr.appendChild(createElement("th", "コスト"));
-    tr.appendChild(createElement("th", "ランク"));
-    tr.appendChild(createElement("th", "効果"));
-    tr.appendChild(createElement("th", "所持数"));
-    table.appendChild(tr);
+    const thead = createElement("thead");
+    const tr = createElement("tr");
+    tr.append(createElement("th", "レアリティ"), 
+              createElement("th", "スキル"), 
+              createElement("th", "条件"), 
+              createElement("th", "コスト"), 
+              createElement("th", "ランク"), 
+              createElement("th", "効果"), 
+              createElement("th", "所持数"));
+    thead.append(tr);
+    table.append(thead);
+
+    const tbody = createElement("tbody");
     for(let skill of Skills) {
-        table.appendChild(createSkill(skill));
+        tbody.append(createSkill(skill));
     }
+    table.append(tbody);
     skills.appendChild(table);
 }
 
