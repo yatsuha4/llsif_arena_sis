@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>スクフェス アリーナスキルヘルパー</title>
     <link rel="stylesheet" href="index.css">
+    <script defer src="/__/firebase/9.6.4/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/9.6.4/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script src="js/skill.js"></script>
     <script src="js/skills.js"></script>
     <script src="js/skillitem.js"></script>
@@ -13,6 +16,11 @@
     <script src="js/index.js"></script>
   </head>
   <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          firebase.analytics();
+      });
+    </script>
     <div id="skills"></div>
     <input type="button" value="Equip" onClick="equipSkill()"/>
   </body>
