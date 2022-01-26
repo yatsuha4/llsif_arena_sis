@@ -6,6 +6,7 @@ body {
 }
 table {
     border-collapse: collapse;
+    width: 100%;
 }
 th, td {
     border: solid 1px #ccc;
