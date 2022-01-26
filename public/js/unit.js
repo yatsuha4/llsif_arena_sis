@@ -11,6 +11,10 @@ class Unit {
             this.conditions.set(condition, true);
         }
         this.value = 1;
+        this.target = 10000000;
+        this.scoreText = null;
+        this.valueText = null;
+        this.targetText = null;
     }
 
     /**
@@ -43,6 +47,7 @@ class Unit {
             }
             character.update();
         }
+        this.update();
     }
 
     /**
@@ -116,6 +121,28 @@ class Unit {
             }
             div.append(table);
         }
+        {
+            this.scoreText = document.createTextNode("");
+            this.valueText = document.createTextNode("");
+            this.targetText = document.createTextNode("");
+            const scoreDiv = document.createElement("div");
+            scoreDiv.append(this.scoreText, 
+                            document.createTextNode(" x "), 
+                            this.valueText, 
+                            document.createTextNode(" = "), 
+                            this.targetText);
+            div.append(scoreDiv);
+        }
+        this.update();
         return div;
+    }
+
+    /**
+     */
+    update() {
+        const score = Math.ceil(this.target / this.value);
+        this.scoreText.textContent = score;
+        this.valueText.textContent = this.value.toFixed(3);
+        this.targetText.textContent = this.target;
     }
 }
