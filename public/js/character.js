@@ -60,9 +60,10 @@ class Character {
     /**
      */
     toHtml() {
-        this.tr = document.createElement("tr");
+        this.tr = [ document.createElement("tr"), document.createElement("tr") ];
         {
             const td = document.createElement("td");
+            td.setAttribute("rowSpan", 2);
             const input = document.createElement("input");
             input.type = "number";
             input.value = this.slot;
@@ -72,7 +73,7 @@ class Character {
                 this.slot = input.value;
             });
             td.append(input);
-            this.tr.append(td);
+            this.tr[0].append(td);
         }
         this.update();
         return this.tr;
@@ -81,20 +82,27 @@ class Character {
     /**
      */
     update() {
-        const elements = [ this.tr.firstChild ];
+        const elements = [ this.tr[0].firstChild ];
+        const values = [];
         let cost = 0;
         for(let item of this.items) {
-            let td = document.createElement("td");
-            td.setAttribute("class", item.skill.getClass());
+            let td = [ document.createElement("td"), document.createElement("td") ];
+            td[0].setAttribute("class", [ item.skill.getClass(), "slotSkill" ].join(" "));
+            td[1].setAttribute("class", [ item.skill.getClass(), "slotValue" ].join(" "));
             if(item.skill.cost > 1) {
-                td.setAttribute("colSpan", item.skill.cost);
+                td[0].setAttribute("colSpan", item.skill.cost);
+                td[1].setAttribute("colSpan", item.skill.cost);
             }
-            td.append(document.createTextNode(item.skill.toString()));
-            elements.push(td);
+            td[0].append(document.createTextNode(item.skill.toString()));
+            let value = (item.skill.max / 100 + 1).toFixed(3);
+            td[1].append(document.createTextNode(value)); 
+            elements.push(td[0]);
+            values.push(td[1]);
             cost += item.skill.cost;
         }
         for(let i = cost; i < SLOT_MAX; i++) {
             let td = document.createElement("td");
+            td.setAttribute("rowSpan", 2);
             if(i >= this.slot) {
                 td.setAttribute("class", "invalidSlot");
             }
@@ -102,9 +110,11 @@ class Character {
         }
         {
             let td = document.createElement("td");
+            td.setAttribute("rowSpan", 2);
             td.append(document.createTextNode(this.value.toFixed(3)));
             elements.push(td);
         }
-        this.tr.replaceChildren(...elements);
+        this.tr[0].replaceChildren(...elements);
+        this.tr[1].replaceChildren(...values);
     }
 }

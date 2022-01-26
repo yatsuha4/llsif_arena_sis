@@ -116,7 +116,9 @@ class Unit {
             }
             {
                 const tbody = document.createElement("tbody");
-                tbody.append(...this.characters.map((character) => character.toHtml()));
+                for(let character of this.characters) {
+                    tbody.append(...character.toHtml());
+                }
                 table.append(tbody);
             }
             div.append(table);

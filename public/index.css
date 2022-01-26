@@ -31,6 +31,9 @@ thead {
 #units table {
     border: solid 1px #ccc;
 }
+#units td {
+    padding: 0.0em 0.5em;
+}
 .unitSkills {
     width: 100%;
     table-layout: fixed;
@@ -58,4 +61,10 @@ thead {
 }
 .invalidSlot {
     background-color: #555;
+}
+.slotSkill {
+    border-bottom: none;
+}
+.slotValue {
+    font-weight: bold;
 }
