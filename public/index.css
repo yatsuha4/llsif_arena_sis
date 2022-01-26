@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: solid 1px #ccc;
+    padding: 0.2em 0.5em;
+}
+.table-header {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+}
+#skills {
+    height: 50%;
+    overflow: hidden scroll;
+}
+#skills-table {
+}
+#skills-header {
+}
+.Absolute {
+    background-color: #fed;
+}
+.Life50, .Life100, .Heart8 {
+    background-color: #efe;
+}
+.FullCombo, .Perfect50 {
+    background-color: #fef;
+}
+.Muse, .Aqours {
+    background-color: #ffe;
+}
+.Smile, .Pure, .Cool {
+    background-color: #fdd;
+}
+.Heart8_Plus {
+    background-color: #dff;
+}
+.empty {
+    color: #aaa;
+}
