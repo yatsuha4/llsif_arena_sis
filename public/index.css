@@ -56,3 +56,6 @@ thead {
 .empty {
     color: #aaa;
 }
+.invalidSlot {
+    background-color: #555;
+}

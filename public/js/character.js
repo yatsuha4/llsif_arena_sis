@@ -68,6 +68,9 @@ class Character {
             input.value = this.slot;
             input.min = 1;
             input.max = 8;
+            input.addEventListener("change", (event) => {
+                this.slot = input.value;
+            });
             td.append(input);
             this.tr.append(td);
         }
