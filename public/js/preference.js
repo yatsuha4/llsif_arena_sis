@@ -6,8 +6,8 @@ class Preference {
     /**
      */
     constructor() {
-        this.skills = {}
-        this.units = [];
+        this.skills = {};
+        this.units = {};
     }
 
     /**
@@ -34,13 +34,14 @@ class Preference {
      */
     appendUnit() {
         const unit = {
+            id: Date.now(), 
             conditions: {
                 Absolute: true
             }, 
             slots: Array(CHARACTER_MAX).fill(SLOT_MAX), 
             target: 10000000
         }
-        this.units.push(unit);
+        this.units[unit.id] = unit;
         return unit;
     }
 }

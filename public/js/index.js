@@ -46,7 +46,8 @@ function createSkillsTable() {
  */
 function setupUnits() {
     document.getElementById("units").
-        replaceChildren(...preference.units.map(unit => (new Unit(unit)).toHtml()));
+        replaceChildren(...Object.values(preference.units).
+                        map(unit => (new Unit(unit)).toHtml()));
 }
 
 /**
