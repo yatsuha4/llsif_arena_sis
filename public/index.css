@@ -66,12 +66,16 @@ span {
 .empty {
     color: #aaa;
 }
-.invalidSlot {
-    background-color: #555;
-}
 .slotSkill {
     border-bottom: none;
 }
 .slotValue {
     font-weight: bold;
+}
+.slotEmpty {
+    color: #eee;
+}
+.slotInvalid {
+    color: transparent;
+    background-color: #555;
 }

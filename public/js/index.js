@@ -1,3 +1,5 @@
+preference = Preference.load();
+console.log(preference);
 window.onload = setup;
 
 /**
@@ -43,8 +45,8 @@ function createSkillsTable() {
 /**
  */
 function setupUnits() {
-    const unit = new Unit();
-    document.getElementById("units").replaceChildren(unit.toHtml());
+    document.getElementById("units").
+        replaceChildren(...preference.units.map(unit => (new Unit(unit)).toHtml()));
 }
 
 /**

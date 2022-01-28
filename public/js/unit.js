@@ -3,15 +3,13 @@
  */
 class Unit {
     /**
+     * @param {object} unitPreference ユニット設定
      */
-    constructor() {
-        this.characters = Array(9).fill().map(value => new Character(this));
-        this.conditions = new Map();
-        for(let condition in Conditions) {
-            this.conditions.set(condition, true);
-        }
+    constructor(unitPreference) {
+        this.preference = unitPreference;
+        this.characters = unitPreference.slots.
+            map((slot, index) => new Character(this, index));
         this.value = 1;
-        this.target = 10000000;
         this.scoreText = null;
         this.valueText = null;
         this.targetText = null;
@@ -56,7 +54,7 @@ class Unit {
      */
     getSkillValue(skill) {
         let value = 1 + skill.min * 0.01;
-        if(this.conditions.get(skill.cond)) {
+        if(this.preference.conditions[skill.cond]) {
             value *= 1 + skill.max * 0.01;
         }
         return value;
@@ -116,7 +114,7 @@ class Unit {
             scoreDiv.append(this.scoreText, 
                             document.createTextNode(" x "), 
                             this.valueText, 
-                            document.createTextNode(" = "), 
+                            document.createTextNode(" >= "), 
                             this.targetText);
             div.append(scoreDiv);
         }
@@ -146,9 +144,10 @@ class Unit {
                 this.conditionInputs.set(condition, input);
                 input.setAttribute("type", "checkbox");
                 input.setAttribute("value", condition);
-                input.checked = this.conditions.get(condition);
+                input.checked = this.preference.conditions[condition];
                 input.addEventListener("change", (event) => {
                     this.setCondition(condition, input.checked);
+                    preference.save();
                 });
                 label.append(input);
                 label.append(document.createTextNode(Conditions[condition]));
@@ -165,7 +164,7 @@ class Unit {
      * @param {bool} value 値
      */
     setCondition(condition, value) {
-        this.conditions.set(condition, value);
+        this.preference.conditions[condition] = value;
         this.conditionInputs.get(condition).checked = value;
         switch(condition) {
         case "Life50":
@@ -220,9 +219,10 @@ class Unit {
     /**
      */
     update() {
-        const score = Math.ceil(this.target / this.value);
+        const target = this.preference.target;
+        const score = Math.ceil(target / this.value);
         this.scoreText.textContent = score;
         this.valueText.textContent = this.value.toFixed(3);
-        this.targetText.textContent = this.target;
+        this.targetText.textContent = target;
     }
 }
