@@ -9,19 +9,23 @@ table {
     width: 100%;
 }
 th, td {
-    border-right: solid 1px #ccc;
-    border-bottom: solid 1px #ccc;
+    border-right: solid 1px #999;
+    border-bottom: solid 1px #999;
     padding: 0.2em 0.5em;
-}
-label {
-    padding: 0.2em 0.5em;
-    margin: 0.2em;
-    border-radius: 0.2em;
 }
 thead {
     background-color: #eee;
     position: sticky;
     top: 0;
+}
+label {
+    padding: 0.2em 0.5em;
+    margin: 0.2em;
+    border-radius: 0.2em;
+    display: inline-block;
+}
+span {
+    display: inline-block;
 }
 #skills {
     border: solid 2px #eee;
@@ -39,22 +43,25 @@ thead {
     table-layout: fixed;
 }
 .Absolute {
-    background-color: #fed;
+    background-color: hsl(30, 100%, 95%);
 }
 .Life50, .Life100, .Heart8 {
-    background-color: #efe;
-}
-.FullCombo, .Perfect50 {
-    background-color: #fef;
+    background-color: hsl(120, 100%, 90%);
 }
 .Muse, .Aqours {
-    background-color: #ffe;
+    background-color: hsl(60, 100%, 90%);
+}
+.FullCombo {
+    background-color: hsl(270, 100%, 90%);
 }
 .Smile, .Pure, .Cool {
-    background-color: #fdd;
+    background-color: hsl(30, 100%, 90%);
 }
 .Heart8_Plus {
-    background-color: #dff;
+    background-color: hsl(180, 100%, 90%);
+}
+.Perfect50 {
+    background-color: hsl(330, 100%, 95%);
 }
 .empty {
     color: #aaa;

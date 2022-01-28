@@ -15,6 +15,7 @@ class Unit {
         this.scoreText = null;
         this.valueText = null;
         this.targetText = null;
+        this.conditionInputs = new Map();
     }
 
     /**
@@ -65,23 +66,7 @@ class Unit {
      */
     toHtml() {
         const div = document.createElement("div");
-        {
-            div.append(...Array.from(this.conditions).map((entry) => {
-                const label = document.createElement("label");
-                label.setAttribute("class", entry[0]);
-                const input = document.createElement("input");
-                input.setAttribute("type", "checkbox");
-                input.setAttribute("value", entry[0]);
-                input.checked = entry[1];
-                input.addEventListener("change", (event) => {
-                    this.conditions.set(entry[0], input.checked);
-                    console.log(this.conditions);
-                });
-                label.append(input);
-                label.append(document.createTextNode(Conditions[entry[0]]));
-                return label;
-            }));
-        }
+        div.append(this.createConditionInputs());
         {
             const input = document.createElement("input");
             input.setAttribute("type", "button");
@@ -137,6 +122,99 @@ class Unit {
         }
         this.update();
         return div;
+    }
+
+    /**
+     * 条件入力要素を生成する
+     * @returns {Element} 条件入力要素
+     */
+    createConditionInputs() {
+        const conditionLists = [
+            [ "Life50", "Life100", "Heart8" ], 
+            [ "Muse", "Aqours" ], 
+            [ "FullCombo" ], 
+            [ "Smile", "Pure", "Cool" ], 
+            [ "Perfect50" ]
+        ];
+        const div = document.createElement("div");
+        for(let conditions of conditionLists) {
+            const span = document.createElement("span");
+            for(let condition of conditions) {
+                const label = document.createElement("label");
+                label.setAttribute("class", condition);
+                const input = document.createElement("input");
+                this.conditionInputs.set(condition, input);
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("value", condition);
+                input.checked = this.conditions.get(condition);
+                input.addEventListener("change", (event) => {
+                    this.setCondition(condition, input.checked);
+                });
+                label.append(input);
+                label.append(document.createTextNode(Conditions[condition]));
+                span.append(label);
+            }
+            div.append(span);
+        }
+        return div;
+    }
+
+    /**
+     * 条件を変更する
+     * @param {string} condition 条件
+     * @param {bool} value 値
+     */
+    setCondition(condition, value) {
+        this.conditions.set(condition, value);
+        this.conditionInputs.get(condition).checked = value;
+        switch(condition) {
+        case "Life50":
+            if(!value) {
+                this.setCondition("Life100", false);
+            }
+            break;
+        case "Life100":
+            if(value) {
+                this.setCondition("Life50", true);
+            }
+            else {
+                this.setCondition("Heart8", false);
+            }
+            break;
+        case "Heart8":
+            if(value) {
+                this.setCondition("Life100", true);
+            }
+            break;
+        case "Muse":
+            if(value) {
+                this.setCondition("Aqours", false);
+            }
+            break;
+        case "Aqours":
+            if(value) {
+                this.setCondition("Muse", false);
+            }
+            break;
+        case "Smile":
+            if(value) {
+                this.setCondition("Pure", false);
+                this.setCondition("Cool", false);
+            }
+            break;
+        case "Pure":
+            if(value) {
+                this.setCondition("Smile", false);
+                this.setCondition("Cool", false);
+            }
+            break;
+        case "Cool":
+            if(value) {
+                this.setCondition("Smile", false);
+                this.setCondition("Pure", false);
+            }
+            break;
+        }
     }
 
     /**
