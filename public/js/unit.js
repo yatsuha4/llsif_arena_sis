@@ -11,6 +11,7 @@ class Unit {
             map((slot, index) => new Character(this, index));
         this.value = 1;
         this.element = null;
+        this.nameText = null;
         this.scoreText = null;
         this.valueText = null;
         this.targetText = null;
@@ -66,8 +67,17 @@ class Unit {
     toHtml() {
         const div = document.createElement("div");
         {
-            const h2 = createElement("h2", "ユニット");
-            h2.append(createButton("ユニット名変更", () => {}), 
+            const h2 = createElement("h2");
+            this.nameText = document.createTextNode(this.preference.name);
+            h2.append(this.nameText, 
+                      createButton("ユニット名変更", () => {
+                          let name = window.prompt("ユニット名", this.preference.name);
+                          if(name) {
+                              this.preference.name = name;
+                              preference.save();
+                              this.update();
+                          }
+                      }), 
                       createButton("追加", () => {
                           appendUnit(this);
                       }), 
@@ -229,6 +239,7 @@ class Unit {
     /**
      */
     update() {
+        this.nameText.textContent = this.preference.name;
         const target = this.preference.target;
         const score = Math.ceil(target / this.value);
         this.scoreText.textContent = score;

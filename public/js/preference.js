@@ -1,4 +1,3 @@
-const STORAGE_KEY = "preference";
 /**
  * 設定
  */
@@ -34,17 +33,19 @@ class Preference {
      */
     appendUnit(src = null) {
         const unit = {
+            name: "ユニット", 
             conditions: {
                 Absolute: true
             }, 
             slots: Array(CHARACTER_MAX).fill(SLOT_MAX), 
-            target: 10000000
+            target: TARGET_SCORE
         }
         let index = 0;
         if(src) {
             index = this.units.findIndex((unit) => unit == src) + 1;
             Object.assign(unit, JSON.parse(JSON.stringify(src)));
         }
+        unit.id = Date.now();
         this.units.splice(index, 0, unit);
         return unit;
     }
