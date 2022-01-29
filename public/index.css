@@ -56,6 +56,9 @@ button {
     width: 100%;
     table-layout: fixed;
 }
+.inputSkillCount {
+    width: 4em;
+}
 .Absolute {
     background-color: hsl(30, 100%, 95%);
 }

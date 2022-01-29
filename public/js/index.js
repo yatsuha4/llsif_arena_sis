@@ -36,7 +36,7 @@ function createSkillsTable() {
 
     const tbody = createElement("tbody");
     for(let skill of Skills) {
-        tbody.append(createSkill(skill));
+        tbody.append(skill.toHtml());
     }
     table.append(tbody);
     skills.appendChild(table);
@@ -78,38 +78,6 @@ function removeUnit(unit) {
  */
 function createUnit(unit) {
     return new Unit(unit).toHtml();
-}
-
-/**
- *
- */
-function createSkill(skill) {
-    const tr = createElement("tr", "", { class: getSkillClass(skill) });
-    tr.appendChild(createTableData(skill.rarity));
-    tr.appendChild(createTableData(skill.name));
-    tr.appendChild(createTableData(Conditions[skill.cond]));
-    tr.appendChild(createTableData(skill.cost));
-    tr.appendChild(createTableData(skill.rank));
-    tr.appendChild(createTableData(skill.min ? `${skill.max}%+${skill.min}%` : `${skill.max}%`));
-    const td = document.createElement("td");
-    const input = createInputNumber(localStorage.getItem(skill.toIndex()) || 0);
-    input.addEventListener("change", (event) => {
-        const value = parseInt(event.target.value);
-        localStorage.setItem(skill.toIndex(), value);
-        tr.setAttribute("class", getSkillClass(skill));
-    });
-    td.appendChild(input);
-    tr.appendChild(td);
-    return tr;
-}
-
-/**
- */
-function getSkillClass(skill) {
-    const value = localStorage.getItem(skill.toIndex()) || 0;
-    return (value > 0)
-        ? skill.getClass()
-        : [ skill.getClass(), "empty" ].join(" ");
 }
 
 /**

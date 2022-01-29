@@ -100,7 +100,7 @@ class Character {
         for(let item of this.items) {
             let tds = Array(2).fill().map(td => document.createElement("td"));
             tds.forEach((td, i) => {
-                td.setAttribute("class", [ classes[i], item.skill.getClass() ].join(" "));
+                td.setAttribute("class", [ classes[i], item.skill.class ].join(" "));
                 if(item.skill.cost > 1) {
                     td.setAttribute("colSpan", item.skill.cost);
                 }
