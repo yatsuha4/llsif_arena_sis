@@ -43,11 +43,27 @@ function createSkillsTable() {
 }
 
 /**
+ * ユニット要素を構成する
  */
 function setupUnits() {
     document.getElementById("units").
-        replaceChildren(...Object.values(preference.units).
-                        map(unit => (new Unit(unit)).toHtml()));
+        replaceChildren(...preference.units.map((unit) => createUnit(unit)));
+}
+
+/**
+ */
+function appendUnit(src) {
+    const unit = preference.appendUnit(src.preference);
+    src.element.insertAdjacentElement("afterend", createUnit(unit));
+}
+
+/**
+ * ユニット要素を生成する
+ * @param {object} unit ユニット設定
+ * @returns {Element} ユニット要素
+ */
+function createUnit(unit) {
+    return new Unit(unit).toHtml();
 }
 
 /**
@@ -111,4 +127,15 @@ function createElement(name, text = "", attributes = null) {
         }
     }
     return element;
+}
+
+/**
+ */
+function createButton(value, onClick) {
+    const input = createElement("input", "", {
+        type: "button", 
+        value: value
+    });
+    input.addEventListener("click", onClick);
+    return input;
 }

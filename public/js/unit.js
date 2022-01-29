@@ -10,6 +10,7 @@ class Unit {
         this.characters = unitPreference.slots.
             map((slot, index) => new Character(this, index));
         this.value = 1;
+        this.element = null;
         this.scoreText = null;
         this.valueText = null;
         this.targetText = null;
@@ -65,13 +66,7 @@ class Unit {
     toHtml() {
         const div = document.createElement("div");
         div.append(this.createConditionInputs());
-        {
-            const input = document.createElement("input");
-            input.setAttribute("type", "button");
-            input.setAttribute("value", "装備");
-            input.addEventListener("click", () => { this.equipSkill() });
-            div.append(input);
-        }
+        div.append(this.createButtons());
         {
             const table = document.createElement("table");
             table.setAttribute("class", "unitSkills");
@@ -119,6 +114,7 @@ class Unit {
             div.append(scoreDiv);
         }
         this.update();
+        this.element = div;
         return div;
     }
 
@@ -155,6 +151,24 @@ class Unit {
             }
             div.append(span);
         }
+        return div;
+    }
+
+    /**
+     */
+    createButtons() {
+        const div = createElement("div");
+        div.append(createButton("装備", () => {
+            this.equipSkill()
+        }));
+        div.append(createButton("複製", () => {
+            appendUnit(this);
+        }));
+        div.append(createButton("削除", () => {
+            if(confirm("ユニットを削除しますか？")) {
+                this.element.remove();
+            }
+        }));
         return div;
     }
 
