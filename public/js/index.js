@@ -59,6 +59,19 @@ function appendUnit(src) {
 }
 
 /**
+ */
+function removeUnit(unit) {
+    if(confirm("ユニットを削除しますか？")) {
+        preference.removeUnit(unit.preference);
+        unit.element.remove();
+        if(preference.units.length == 0) {
+            document.getElementById("units").append(createUnit(preference.appendUnit()));
+        }
+        preference.save();
+    }
+}
+
+/**
  * ユニット要素を生成する
  * @param {object} unit ユニット設定
  * @returns {Element} ユニット要素
@@ -132,11 +145,9 @@ function createElement(name, text = "", attributes = null) {
 
 /**
  */
-function createButton(value, onClick) {
-    const input = createElement("input", "", {
-        type: "button", 
-        value: value
-    });
-    input.addEventListener("click", onClick);
-    return input;
+function createButton(text, onClick) {
+    const button = createElement("button");
+    button.addEventListener("click", onClick);
+    button.append(document.createTextNode(text));
+    return button;
 }

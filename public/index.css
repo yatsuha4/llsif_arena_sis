@@ -1,7 +1,18 @@
 html {
 }
 body {
-    padding: 0.5em;
+    margin: 0.5em;
+}
+h1 {
+    background: #44f;
+    color: #fff;
+    margin: 0.5em 0;
+    padding: 0.1em 0.5em;
+}
+h2 {
+    background: #ccf;
+    margin: 0.5em 0;
+    padding: 0.1em 0.5em;
 }
 table {
     border-collapse: separate;
@@ -26,6 +37,9 @@ label {
 }
 span {
     display: inline-block;
+}
+button {
+    margin: 0.2em;
 }
 #skills {
     border: solid 2px #eee;

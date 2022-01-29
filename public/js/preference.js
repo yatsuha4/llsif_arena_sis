@@ -48,4 +48,10 @@ class Preference {
         this.units.splice(index, 0, unit);
         return unit;
     }
+
+    /**
+     */
+    removeUnit(unit) {
+        this.units = this.units.filter((x) => x != unit);
+    }
 }

@@ -67,14 +67,13 @@ class Unit {
         const div = document.createElement("div");
         {
             const h2 = createElement("h2", "ユニット");
-            h2.append(createButton("+", () => {
-                appendUnit(this);
-            }));
-            h2.append(createButton("-", () => {
-                if(confirm("ユニットを削除しますか？")) {
-                    this.element.remove();
-                }
-            }));
+            h2.append(createButton("ユニット名変更", () => {}), 
+                      createButton("追加", () => {
+                          appendUnit(this);
+                      }), 
+                      createButton("削除", () => {
+                          removeUnit(this);
+                      }));
             div.append(h2);
         }
         div.append(this.createConditionInputs());
@@ -125,7 +124,7 @@ class Unit {
             div.append(scoreDiv);
         }
         this.element = div;
-        this.equipSkill();
+        //this.equipSkill();
         this.update();
         return div;
     }
@@ -163,7 +162,7 @@ class Unit {
             }
             div.append(span);
         }
-        div.append(createButton("装備", () => {
+        div.append(createButton("スキル更新", () => {
             this.equipSkill()
         }));
         return div;
