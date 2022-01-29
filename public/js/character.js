@@ -3,12 +3,23 @@
  */
 class Character {
     /**
-     * @param {Unit} ユニット
+     * @param {Unit} unit ユニット
+     * @param {number} index インデックス番号
      */
-    constructor(unit) {
+    constructor(unit, index) {
         this.unit = unit;
-        this.slot = 8;
+        this.index = index;
+        this.slot = unit.preference.slots[index];
         this.items = [];
+        this.value = 1;
+        this.tr = null;
+    }
+
+    /**
+     */
+    clear() {
+        this.items = [];
+        this.value = 1;
     }
 
     /**
@@ -53,5 +64,77 @@ class Character {
      */
     getValue() {
         return this.items.reduce((value, item) => value * item.value, 1);
+    }
+
+    /**
+     */
+    toHtml() {
+        this.tr = [ document.createElement("tr"), document.createElement("tr") ];
+        {
+            const td = document.createElement("td");
+            td.setAttribute("rowSpan", 2);
+            const input = document.createElement("input");
+            input.type = "number";
+            input.value = this.slot;
+            input.min = 1;
+            input.max = 8;
+            input.addEventListener("change", (event) => {
+                this.slot = this.unit.preference.slots[this.index] = input.value;
+                this.clear();
+                this.update();
+                preference.save();
+            });
+            td.append(input);
+            this.tr[0].append(td);
+        }
+        this.update();
+        return this.tr;
+    }
+
+    /**
+     */
+    update() {
+        const classes = [ "slotSkill", "slotValue" ];
+        const elements = [ [ this.tr[0].firstChild ], [] ];
+        let cost = 0;
+        for(let item of this.items) {
+            let tds = Array(2).fill().map(td => document.createElement("td"));
+            tds.forEach((td, i) => {
+                td.setAttribute("class", [ classes[i], item.skill.class ].join(" "));
+                if(item.skill.cost > 1) {
+                    td.setAttribute("colSpan", item.skill.cost);
+                }
+            });
+            tds[0].append(document.createTextNode(item.skill.toString()));
+            let value = (item.skill.max / 100 + 1).toFixed(3);
+            tds[1].append(document.createTextNode(value)); 
+            tds.forEach((td, i) => {
+                elements[i].push(td);
+            });
+            cost += item.skill.cost;
+        }
+        for(let i = cost; i < SLOT_MAX; i++) {
+            let tds = Array(2).fill().map(td => document.createElement("td"));
+            tds.forEach((td, j) => {
+                td.setAttribute("class", [
+                    classes[j], 
+                    (i < this.slot) ? "slotEmpty" : "slotInvalid"
+                ].join(" "));
+            });
+            tds[0].append(document.createTextNode("-"));
+            tds[1].append(document.createTextNode("1.000"));
+            tds.forEach((td, j) => {
+                elements[j].push(td);
+            });
+        }
+        {
+            let td = document.createElement("td");
+            td.setAttribute("rowSpan", 2);
+            td.append(document.createTextNode(this.value.toFixed(3)));
+            elements[0].push(td);
+        }
+        this.tr.forEach((tr, i) => {
+            tr.replaceChildren(...elements[i]);
+        });
     }
 }

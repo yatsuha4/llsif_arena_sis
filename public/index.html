@@ -2,15 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>スクフェス アリーナスキルヘルパー</title>
+    <title>スクフェス アリーナスキル編成</title>
     <link rel="stylesheet" href="index.css">
     <script defer src="/__/firebase/9.6.4/firebase-app-compat.js"></script>
     <script defer src="/__/firebase/9.6.4/firebase-analytics-compat.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="js/const.js"></script>
     <script src="js/skill.js"></script>
     <script src="js/skills.js"></script>
     <script src="js/skillitem.js"></script>
     <script src="js/conditions.js"></script>
+    <script src="js/preference.js"></script>
     <script src="js/character.js"></script>
     <script src="js/unit.js"></script>
     <script src="js/index.js"></script>
@@ -21,7 +23,9 @@
           firebase.analytics();
       });
     </script>
+    <h1>スクフェス アリーナスキル編成</h1>
+    <h2>所持スキル</h2>
     <div id="skills"></div>
-    <input type="button" value="Equip" onClick="equipSkill()"/>
+    <div id="units"></div>
   </body>
 </html>

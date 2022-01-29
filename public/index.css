@@ -1,47 +1,98 @@
 html {
-    height: 100%;
 }
 body {
-    height: 100%;
+    margin: 0.5em;
+}
+h1 {
+    background: #44f;
+    color: #fff;
+    margin: 0.5em 0;
+    padding: 0.1em 0.5em;
+}
+h2 {
+    background: #ccf;
+    margin: 0.5em 0;
+    padding: 0.1em 0.5em;
 }
 table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
 }
 th, td {
-    border: solid 1px #ccc;
+    border-right: solid 1px #999;
+    border-bottom: solid 1px #999;
     padding: 0.2em 0.5em;
 }
-.table-header {
+thead {
     background-color: #eee;
     position: sticky;
     top: 0;
 }
+label {
+    padding: 0.2em 0.5em;
+    margin: 0.2em;
+    border-radius: 0.2em;
+    display: inline-block;
+}
+span {
+    display: inline-block;
+}
+button {
+    margin: 0.2em;
+}
 #skills {
-    height: 50%;
+    border: solid 2px #eee;
+    height: 50vh;
     overflow: hidden scroll;
 }
-#skills-table {
+#units table {
+    border: solid 1px #ccc;
 }
-#skills-header {
+#units td {
+    padding: 0.0em 0.5em;
+}
+.unitSkills {
+    width: 100%;
+    table-layout: fixed;
+}
+.inputSkillCount {
+    width: 4em;
 }
 .Absolute {
-    background-color: #fed;
+    background-color: hsl(30, 100%, 95%);
 }
 .Life50, .Life100, .Heart8 {
-    background-color: #efe;
-}
-.FullCombo, .Perfect50 {
-    background-color: #fef;
+    background-color: hsl(120, 100%, 90%);
 }
 .Muse, .Aqours {
-    background-color: #ffe;
+    background-color: hsl(60, 100%, 90%);
+}
+.FullCombo {
+    background-color: hsl(270, 100%, 90%);
 }
 .Smile, .Pure, .Cool {
-    background-color: #fdd;
+    background-color: hsl(30, 100%, 90%);
 }
 .Heart8_Plus {
-    background-color: #dff;
+    background-color: hsl(180, 100%, 90%);
+}
+.Perfect50 {
+    background-color: hsl(330, 100%, 95%);
 }
 .empty {
     color: #aaa;
+}
+.slotSkill {
+    border-bottom: none;
+}
+.slotValue {
+    font-weight: bold;
+}
+.slotEmpty {
+    color: #eee;
+}
+.slotInvalid {
+    color: transparent;
+    background-color: #555;
 }
