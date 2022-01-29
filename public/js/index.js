@@ -54,6 +54,7 @@ function setupUnits() {
  */
 function appendUnit(src) {
     const unit = preference.appendUnit(src.preference);
+    preference.save();
     src.element.insertAdjacentElement("afterend", createUnit(unit));
 }
 

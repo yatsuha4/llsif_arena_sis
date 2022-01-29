@@ -65,8 +65,19 @@ class Unit {
      */
     toHtml() {
         const div = document.createElement("div");
+        {
+            const h2 = createElement("h2", "ユニット");
+            h2.append(createButton("+", () => {
+                appendUnit(this);
+            }));
+            h2.append(createButton("-", () => {
+                if(confirm("ユニットを削除しますか？")) {
+                    this.element.remove();
+                }
+            }));
+            div.append(h2);
+        }
         div.append(this.createConditionInputs());
-        div.append(this.createButtons());
         {
             const table = document.createElement("table");
             table.setAttribute("class", "unitSkills");
@@ -113,8 +124,9 @@ class Unit {
                             this.targetText);
             div.append(scoreDiv);
         }
-        this.update();
         this.element = div;
+        this.equipSkill();
+        this.update();
         return div;
     }
 
@@ -151,23 +163,8 @@ class Unit {
             }
             div.append(span);
         }
-        return div;
-    }
-
-    /**
-     */
-    createButtons() {
-        const div = createElement("div");
         div.append(createButton("装備", () => {
             this.equipSkill()
-        }));
-        div.append(createButton("複製", () => {
-            appendUnit(this);
-        }));
-        div.append(createButton("削除", () => {
-            if(confirm("ユニットを削除しますか？")) {
-                this.element.remove();
-            }
         }));
         return div;
     }
