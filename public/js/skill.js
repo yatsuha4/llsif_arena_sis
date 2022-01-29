@@ -35,7 +35,6 @@ class Skill {
         tr.append(createElement("td", this.rarity), 
                   createElement("td", this.name), 
                   createElement("td", Conditions[this.cond]), 
-                  createElement("td", this.cost), 
                   createElement("td", this.rank), 
                   createElement("td", 
                                 this.min

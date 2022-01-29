@@ -27,7 +27,6 @@ function createSkillsTable() {
     tr.append(createElement("th", "レアリティ"), 
               createElement("th", "スキル"), 
               createElement("th", "条件"), 
-              createElement("th", "コスト"), 
               createElement("th", "ランク"), 
               createElement("th", "効果"), 
               createElement("th", "所持数"));
