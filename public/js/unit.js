@@ -14,7 +14,7 @@ class Unit {
         this.nameText = null;
         this.scoreText = null;
         this.valueText = null;
-        this.targetText = null;
+        this.targetInput = null;
         this.conditionInputs = new Map();
     }
 
@@ -124,13 +124,19 @@ class Unit {
         {
             this.scoreText = document.createTextNode("");
             this.valueText = document.createTextNode("");
-            this.targetText = document.createTextNode("");
+            this.targetInput = createInputNumber(this.preference.target);
+            this.targetInput.addEventListener("change", (event) => {
+                this.preference.target = event.target.valueAsNumber;
+                preference.save();
+                this.update();
+            });
             const scoreDiv = document.createElement("div");
             scoreDiv.append(this.scoreText, 
                             document.createTextNode(" x "), 
                             this.valueText, 
                             document.createTextNode(" >= "), 
-                            this.targetText);
+                            this.targetInput, 
+                            document.createTextNode("(目標スコア)"));
             div.append(scoreDiv);
         }
         this.element = div;
@@ -244,6 +250,6 @@ class Unit {
         const score = Math.ceil(target / this.value);
         this.scoreText.textContent = score;
         this.valueText.textContent = this.value.toFixed(3);
-        this.targetText.textContent = target;
+        this.targetInput.value = target;
     }
 }
