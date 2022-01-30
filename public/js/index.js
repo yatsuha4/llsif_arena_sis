@@ -118,3 +118,19 @@ function createButton(text, onClick) {
     button.append(document.createTextNode(text));
     return button;
 }
+
+/**
+ */
+function exportPreference() {
+    const json = JSON.stringify(preference, null, 4);
+    const blob = new Blob([ json ], { type: "text/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "llsif-arena-sis.json";
+    link.click();
+}
+
+/**
+ */
+function importPreference() {
+}
