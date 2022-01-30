@@ -69,21 +69,11 @@ class Unit {
         {
             const h2 = createElement("h2");
             this.nameText = document.createTextNode(this.preference.name);
-            h2.append(this.nameText, 
-                      createButton("ユニット名変更", () => {
-                          let name = window.prompt("ユニット名", this.preference.name);
-                          if(name) {
-                              this.preference.name = name;
-                              preference.save();
-                              this.update();
-                          }
-                      }), 
-                      createButton("追加", () => {
-                          appendUnit(this);
-                      }), 
-                      createButton("削除", () => {
-                          removeUnit(this);
-                      }));
+            const buttons = createElement("span");
+            buttons.append(createButton("ユニット名変更", () => { this.editUnitName(); }), 
+                           createButton("追加", () => { appendUnit(this); }), 
+                           createButton("削除", () => { removeUnit(this); }));
+            h2.append(this.nameText, buttons);
             div.append(h2);
         }
         div.append(this.createConditionInputs());
@@ -143,6 +133,18 @@ class Unit {
         //this.equipSkill();
         this.update();
         return div;
+    }
+
+    /**
+     * ユニット名変更
+     */
+    editUnitName() {
+        let name = window.prompt("ユニット名", this.preference.name);
+        if(name) {
+            this.preference.name = name;
+            preference.save();
+            this.update();
+        }
     }
 
     /**

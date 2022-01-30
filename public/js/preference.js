@@ -15,12 +15,18 @@ class Preference {
         const preference = new Preference();
         const json = localStorage.getItem(STORAGE_KEY);
         if(json) {
-            Object.assign(preference, JSON.parse(json));
+            preference.load(json);
         }
         else {
             preference.appendUnit();
         }
         return preference;
+    }
+
+    /**
+     */
+    load(json) {
+        Object.assign(this, JSON.parse(json));
     }
 
     /**

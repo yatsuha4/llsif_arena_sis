@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>スクフェス アリーナスキル編成</title>
+    <title>スクフェス おまかせアリーナスキル</title>
     <link rel="stylesheet" href="index.css">
     <script defer src="/__/firebase/9.6.4/firebase-app-compat.js"></script>
     <script defer src="/__/firebase/9.6.4/firebase-analytics-compat.js"></script>
@@ -23,7 +23,13 @@
           firebase.analytics();
       });
     </script>
-    <h1>スクフェス アリーナスキル編成</h1>
+    <h1>
+      スクフェス おまかせアリーナスキル
+      <span>
+        <button onclick="exportPreference()">ファイル保存</button>
+        <button onclick="importPreference()">読み込む</button>
+      </span>
+    </h1>
     <h2>所持スキル</h2>
     <div id="skills"></div>
     <div id="units"></div>
