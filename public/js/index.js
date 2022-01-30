@@ -30,7 +30,7 @@ function appendUnit(src) {
 /**
  */
 function removeUnit(unit) {
-    if(confirm("ユニットを削除しますか？")) {
+    if(confirm(`${unit.preference.name} を削除しますか？`)) {
         preference.removeUnit(unit.preference);
         unit.element.remove();
         if(preference.units.length == 0) {
