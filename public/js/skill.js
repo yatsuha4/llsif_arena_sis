@@ -30,6 +30,28 @@ class Skill {
 
     /**
      */
+    static toHtml() {
+        const table = createElement("table", "", { id: "skills-table" });
+        const thead = createElement("thead");
+        const tr = createElement("tr");
+        tr.append(createElement("th", "レアリティ"), 
+                  createElement("th", "スキル"), 
+                  createElement("th", "条件"), 
+                  createElement("th", "ランク"), 
+                  createElement("th", "効果"), 
+                  createElement("th", "所持数"));
+        thead.append(tr);
+        table.append(thead);
+        const tbody = createElement("tbody");
+        for(let skill of Skills) {
+            tbody.append(skill.toHtml());
+        }
+        table.append(tbody);
+        return table;
+    }
+
+    /**
+     */
     toHtml() {
         const tr = this.element = createElement("tr");
         tr.append(createElement("td", this.rarity), 
