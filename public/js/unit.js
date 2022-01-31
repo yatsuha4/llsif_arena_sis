@@ -94,11 +94,6 @@ class Unit {
                     th.append(document.createTextNode("スキル"));
                     tr.append(th);
                 }
-                {
-                    const th = document.createElement("th");
-                    th.append(document.createTextNode("効果"));
-                    tr.append(th);
-                }
                 thead.append(tr);
                 table.append(thead);
             }

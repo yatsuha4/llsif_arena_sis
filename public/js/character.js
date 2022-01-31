@@ -127,12 +127,6 @@ class Character {
                 elements[j].push(td);
             });
         }
-        {
-            let td = document.createElement("td");
-            td.setAttribute("rowSpan", 2);
-            td.append(document.createTextNode(this.value.toFixed(3)));
-            elements[0].push(td);
-        }
         this.tr.forEach((tr, i) => {
             tr.replaceChildren(...elements[i]);
         });
