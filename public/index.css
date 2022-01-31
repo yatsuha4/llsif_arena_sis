@@ -14,10 +14,6 @@ h2 {
     margin: 0.5rem 0;
     padding: 0.1rem 0.5rem;
 }
-h1, h2 {
-    display: flex;
-    justify-content: space-between;
-}
 table {
     border-collapse: separate;
     border-spacing: 0;
@@ -36,12 +32,9 @@ thead {
 label {
     padding: 0.2rem 0.5rem;
     margin: 0.2rem;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     display: inline-block;
-}
-button {
-    margin: 0.2rem;
-    padding: 0.5rem 1rem;
+    white-space: nowrap;
 }
 * {
     text-size-adjust: 200%;
@@ -56,6 +49,15 @@ button {
 }
 #units td {
     padding: 0.0rem 0.5rem;
+}
+.button {
+    margin: 0.2rem;
+    padding: 0.2rem 1rem;
+    white-space: nowrap;
+}
+.buttons {
+    display: flex;
+    justify-content: flex-end;
 }
 .unitSkills {
     width: 100%;
