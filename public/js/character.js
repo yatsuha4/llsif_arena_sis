@@ -73,11 +73,13 @@ class Character {
         {
             const td = document.createElement("td");
             td.setAttribute("rowSpan", 2);
-            const input = document.createElement("input");
-            input.type = "number";
-            input.value = this.slot;
-            input.min = 1;
-            input.max = 8;
+            const input = createElement("input", "", {
+                type: "number", 
+                class: "inputSlot", 
+                value: this.slot, 
+                min: 1, 
+                max: 8
+            });
             input.addEventListener("change", (event) => {
                 this.slot = this.unit.preference.slots[this.index] = input.value;
                 this.clear();
@@ -126,12 +128,6 @@ class Character {
             tds.forEach((td, j) => {
                 elements[j].push(td);
             });
-        }
-        {
-            let td = document.createElement("td");
-            td.setAttribute("rowSpan", 2);
-            td.append(document.createTextNode(this.value.toFixed(3)));
-            elements[0].push(td);
         }
         this.tr.forEach((tr, i) => {
             tr.replaceChildren(...elements[i]);

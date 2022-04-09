@@ -69,11 +69,14 @@ class Unit {
         {
             const h2 = createElement("h2");
             this.nameText = document.createTextNode(this.preference.name);
-            const buttons = createElement("span");
-            buttons.append(createButton("ユニット名変更", () => { this.editUnitName(); }), 
-                           createButton("追加", () => { appendUnit(this); }), 
-                           createButton("削除", () => { removeUnit(this); }));
-            h2.append(this.nameText, buttons);
+            h2.append(this.nameText);
+            {
+                const buttons = createElement("div", "", { class: "buttons" });
+                buttons.append(createButton("ユニット名変更", () => { this.editUnitName(); }), 
+                               createButton("追加", () => { appendUnit(this); }), 
+                               createButton("削除", () => { removeUnit(this); }));
+                h2.append(buttons);
+            }
             div.append(h2);
         }
         div.append(this.createConditionInputs());
@@ -92,11 +95,6 @@ class Unit {
                     const th = document.createElement("th");
                     th.colSpan = SLOT_MAX;
                     th.append(document.createTextNode("スキル"));
-                    tr.append(th);
-                }
-                {
-                    const th = document.createElement("th");
-                    th.append(document.createTextNode("効果"));
                     tr.append(th);
                 }
                 thead.append(tr);

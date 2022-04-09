@@ -1,22 +1,18 @@
 html {
 }
 body {
-    margin: 0.5em;
+    margin: 0.5rem;
 }
 h1 {
     background: #44f;
     color: #fff;
-    margin: 0.5em 0;
-    padding: 0.1em 0.5em;
+    margin: 0.5rem 0;
+    padding: 0.1rem 0.5rem;
 }
 h2 {
     background: #ccf;
-    margin: 0.5em 0;
-    padding: 0.1em 0.5em;
-}
-h1, h2 {
-    display: flex;
-    justify-content: space-between;
+    margin: 0.5rem 0;
+    padding: 0.1rem 0.5rem;
 }
 table {
     border-collapse: separate;
@@ -26,7 +22,7 @@ table {
 th, td {
     border-right: solid 1px #999;
     border-bottom: solid 1px #999;
-    padding: 0.2em 0.5em;
+    padding: 0.2rem 0.5rem;
 }
 thead {
     background-color: #eee;
@@ -34,13 +30,14 @@ thead {
     top: 0;
 }
 label {
-    padding: 0.2em 0.5em;
-    margin: 0.2em;
-    border-radius: 0.2em;
+    padding: 0.2rem 0.5rem;
+    margin: 0.2rem;
+    border-radius: 0.5rem;
     display: inline-block;
+    white-space: nowrap;
 }
-button {
-    margin: 0.2em;
+* {
+    text-size-adjust: 200%;
 }
 #skills {
     border: solid 2px #eee;
@@ -51,14 +48,23 @@ button {
     border: solid 1px #ccc;
 }
 #units td {
-    padding: 0.0em 0.5em;
+    padding: 0.0rem 0.5rem;
+}
+.button {
+    margin: 0.2rem;
+    padding: 0.2rem 1rem;
+    white-space: nowrap;
+}
+.buttons {
+    display: flex;
+    justify-content: flex-end;
 }
 .unitSkills {
     width: 100%;
     table-layout: fixed;
 }
 .inputSkillCount {
-    width: 4em;
+    width: 4rem;
 }
 .Absolute {
     background-color: hsl(30, 100%, 95%);

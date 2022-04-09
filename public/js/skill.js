@@ -34,10 +34,9 @@ class Skill {
         const table = createElement("table", "", { id: "skills-table" });
         const thead = createElement("thead");
         const tr = createElement("tr");
-        tr.append(createElement("th", "レアリティ"), 
+        tr.append(createElement("th", "レア"), 
                   createElement("th", "スキル"), 
-                  createElement("th", "条件"), 
-                  createElement("th", "ランク"), 
+                  createElement("th", "R"), 
                   createElement("th", "効果"), 
                   createElement("th", "所持数"));
         thead.append(tr);
@@ -56,12 +55,11 @@ class Skill {
         const tr = this.element = createElement("tr");
         tr.append(createElement("td", this.rarity), 
                   createElement("td", this.name), 
-                  createElement("td", Conditions[this.cond]), 
                   createElement("td", this.rank), 
                   createElement("td", 
                                 this.min
-                                ? `${this.max}%+${this.min}%`
-                                : `${this.max}%`));
+                                ? `${this.max}+${this.min}`
+                                : `${this.max}`));
         const td = createElement("td");
         this.input = createInputNumber(this.count);
         this.input.setAttribute("class", "inputSkillCount");
@@ -69,11 +67,19 @@ class Skill {
             this.count = parseInt(event.target.value);
         });
         td.append(this.input, 
+                  createButton("+", () => {
+                      ++this.count;
+                  }), 
+                  createButton("-", () => {
+                      if(this.count > 0) {
+                          --this.count;
+                      }
+                  }), 
                   createButton("0", () => {
                       this.count = 0;
                   }), 
-                  createButton("999", () => {
-                      this.count = 999;
+                  createButton("99", () => {
+                      this.count = 99;
                   }));
         tr.append(td);
         this.update();

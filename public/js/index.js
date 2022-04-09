@@ -74,9 +74,12 @@ function createElement(name, text = "", attributes = null) {
 /**
  */
 function createButton(text, onClick) {
-    const button = createElement("button");
+    const button = createElement("input", "", {
+        type: "button", 
+        class: "button", 
+        value: text
+    });
     button.addEventListener("click", onClick);
-    button.append(document.createTextNode(text));
     return button;
 }
 
@@ -102,6 +105,7 @@ function importPreference() {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
             preference.load(reader.result);
+            preference.save();
             setup();
         });
         reader.readAsText(event.path[0].files[0]);
