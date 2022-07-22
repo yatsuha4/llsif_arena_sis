@@ -33,6 +33,10 @@ class Character {
         let best = null;
         let item;
         while(item = items.shift()) {
+            if(this.items.find((e) => ((e.skill.name == item.skill.name && 
+                                        e.skill.rarity == item.skill.rarity)))) {
+                continue;
+            }
             if(slot + item.skill.cost <= this.slot) {
                 this.items.push(item);
                 const value = this.getValue();
