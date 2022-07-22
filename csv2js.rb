@@ -1,5 +1,14 @@
+# coding: utf-8
 require 'csv'
 require 'json'
+
+CONDITION_POSTFIX = {
+  'Muse' => '[μ’s]', 
+  'Aqours' => '[Aqours]', 
+  'Smile' => '[スマイル]', 
+  'Pure' => '[ピュア]', 
+  'Cool' => '[クール]'
+}
 
 skills = Array.new
 keys = nil
@@ -15,12 +24,13 @@ CSV.foreach(ARGV[0]) { |row|
       end
     }
     Array(skill['condition']).each { |condition|
+      name = skill['name'] + (CONDITION_POSTFIX[condition] || '')
       ( 1 .. 5 ).each { |rank|
         if max = skill["R#{rank}"]
           min = skill["R#{rank}+"]
           args = [
             skill['rarity'], 
-            skill['name'], 
+            name, 
             condition, 
             skill['cost'].to_i, 
             rank, 
