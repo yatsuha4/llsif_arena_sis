@@ -30,6 +30,12 @@ class Unit {
               }).
               filter((item) => item.count > 0 && item.value > 1);
         items.sort((lhs, rhs) => rhs.vps - lhs.vps);
+        items = items.reduce((dst, src) => {
+            return dst.find((item) => (item.skill.name == src.skill.name &&
+                                       item.skill.rarity == src.skill.rarity))
+                ? dst
+                : dst.concat(src);
+        }, []);
         console.log(items);
         this.value = 1;
         for(let character of this.characters) {
